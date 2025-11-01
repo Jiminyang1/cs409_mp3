@@ -98,7 +98,10 @@ def main(argv):
         userEmails.append(str(d['data']['email']))
 
     # Open 'tasks.txt' for sample task names
-    f = open('tasks.txt','r')
+    import os
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    tasks_file = os.path.join(script_dir, 'tasks.txt')
+    f = open(tasks_file, 'r')
     taskNames = f.read().splitlines()
 
     # Loop 'taskCount' number of times
@@ -120,6 +123,11 @@ def main(argv):
         response = conn.getresponse()
         data = response.read()
         d = json.loads(data)
+        
+        if 'data' not in d or '_id' not in d['data']:
+            print(f"Error creating task: {d.get('message', 'Unknown error')}")
+            print(f"Response: {d}")
+            sys.exit(1)
 
         taskID = str(d['data']['_id'])
 
