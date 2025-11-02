@@ -309,7 +309,7 @@ module.exports = function (router) {
             try {
                 var userId = req.params.id;
                 if (!mongoose.Types.ObjectId.isValid(userId)) {
-                    throw createError(400, 'Invalid user id');
+                    throw createError(404, 'User not found');
                 }
                 var selectParamName = req.query.select !== undefined ? 'select' : (req.query.filter !== undefined ? 'filter' : 'select');
                 var selectValue = req.query.select !== undefined ? req.query.select : req.query.filter;
@@ -331,7 +331,7 @@ module.exports = function (router) {
             try {
                 var userId = req.params.id;
                 if (!mongoose.Types.ObjectId.isValid(userId)) {
-                    throw createError(400, 'Invalid user id');
+                    throw createError(404, 'User not found');
                 }
 
                 var user = await User.findById(userId);
@@ -363,7 +363,7 @@ module.exports = function (router) {
             try {
                 var userId = req.params.id;
                 if (!mongoose.Types.ObjectId.isValid(userId)) {
-                    throw createError(400, 'Invalid user id');
+                    throw createError(404, 'User not found');
                 }
 
                 var user = await User.findById(userId);
