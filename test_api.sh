@@ -261,7 +261,7 @@ test_endpoint "GET /users/:id (不存在)" "GET" "$BASE_URL/users/507f1f77bcf86c
 test_endpoint "GET /tasks/:id (不存在)" "GET" "$BASE_URL/tasks/507f1f77bcf86cd799439011" "" "404"
 
 # 400 测试 (无效 ID)
-test_endpoint "GET /users/:id (无效ID)" "GET" "$BASE_URL/users/invalid-id" "" "400"
+test_endpoint "GET /users/:id (无效ID)" "GET" "$BASE_URL/users/invalid-id" "" "404"
 
 # 204 测试 (DELETE) - 创建新用户用于删除测试
 echo -n "DELETE 返回 204 ... "

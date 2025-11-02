@@ -465,7 +465,7 @@ module.exports = function (router) {
             try {
                 var taskId = req.params.id;
                 if (!mongoose.Types.ObjectId.isValid(taskId)) {
-                    throw createError(400, 'Invalid task id');
+                    throw createError(404, 'Task not found');
                 }
                 var selectParamName = req.query.select !== undefined ? 'select' : (req.query.filter !== undefined ? 'filter' : 'select');
                 var selectValue = req.query.select !== undefined ? req.query.select : req.query.filter;
@@ -487,7 +487,7 @@ module.exports = function (router) {
             try {
                 var taskId = req.params.id;
                 if (!mongoose.Types.ObjectId.isValid(taskId)) {
-                    throw createError(400, 'Invalid task id');
+                    throw createError(404, 'Task not found');
                 }
 
                 var task = await Task.findById(taskId);
@@ -546,7 +546,7 @@ module.exports = function (router) {
             try {
                 var taskId = req.params.id;
                 if (!mongoose.Types.ObjectId.isValid(taskId)) {
-                    throw createError(400, 'Invalid task id');
+                    throw createError(404, 'Task not found');
                 }
 
                 var task = await Task.findById(taskId);
